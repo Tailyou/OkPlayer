@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/greyLight"
+    tools:context="com.tailyou.player.MainActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:background="@color/white"
+        android:gravity="center"
+        android:paddingBottom="8dp"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
+        android:paddingTop="8dp">
+
+        <ImageView
+            android:id="@+id/ivPlayCtrl"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:src="@mipmap/ic_play" />
+
+        <TextView
+            android:id="@+id/tvPlayTime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="12dp"
+            android:layout_marginRight="-6dp"
+            android:textColor="@color/grey"
+            android:textSize="14sp" />
+
+        <SeekBar
+            android:id="@+id/seekBarPrg"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:maxHeight="1dp"
+            android:minHeight="1dp"
+            android:progressDrawable="@drawable/seek_bar_prg_drawable"
+            android:thumb="@drawable/seek_bar_thumb"
+            android:thumbOffset="2dp" />
+
+        <TextView
+            android:id="@+id/tvTotalTime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="-6dp"
+            android:textColor="@color/grey"
+            android:textSize="14sp" />
+
+    </LinearLayout>
+
+</LinearLayout>
