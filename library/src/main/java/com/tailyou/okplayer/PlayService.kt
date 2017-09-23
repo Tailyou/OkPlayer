@@ -78,6 +78,7 @@ class PlayService : Service() {
     }
 
     fun onNewMp3(mp3Path: String) {
+        isPause = false
         mMediaPlayer.reset()
         mMediaPlayer.setOnCompletionListener { notifyCompleted() }
         mMediaPlayer.setOnPreparedListener { notifyPrepared() }
