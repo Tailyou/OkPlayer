@@ -45,6 +45,7 @@ class PlayService : Service() {
     private lateinit var mMediaPlayer: MediaPlayer
     private lateinit var mPlayReceiver: PlayReceiver
     private lateinit var mPlayHandler: PlayHandler
+    private var isPause = false
 
     inner class PlayHandler : Handler() {
         override fun handleMessage(msg: Message?) {
@@ -87,11 +88,13 @@ class PlayService : Service() {
     fun onPlay() {
         mPlayHandler.sendEmptyMessage(WHAT_CHANGE_PLAY_PROGRESS)
         mMediaPlayer.start()
+        isPause = false
     }
 
     fun onPause() {
         mPlayHandler.removeMessages(WHAT_CHANGE_PLAY_PROGRESS)
         mMediaPlayer.pause()
+        isPause = true
     }
 
     //通知播放活动（Activity）-准备完毕
@@ -101,7 +104,7 @@ class PlayService : Service() {
         playStatus.putExtra(EXTRA_PLAY_STATUS, EXTRA_STATUS_PREPARED)
         playStatus.putExtra(EXTRA_PLAY_DURATION, duration)
         sendBroadcast(playStatus)
-        onPlay()
+        if (!isPause) onPlay()
     }
 
     //通知播放活动（Activity）-更新进度
