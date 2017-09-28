@@ -89,7 +89,6 @@ class PlayService : Service() {
     fun onPlay() {
         mPlayHandler.sendEmptyMessage(WHAT_CHANGE_PLAY_PROGRESS)
         mMediaPlayer.start()
-        isPause = false
     }
 
     fun onPause() {
@@ -100,12 +99,14 @@ class PlayService : Service() {
 
     //通知播放活动（Activity）-准备完毕
     private fun notifyPrepared() {
-        var duration = mMediaPlayer.duration
-        var playStatus = Intent(ACTION_PLAY_STATUS)
-        playStatus.putExtra(EXTRA_PLAY_STATUS, EXTRA_STATUS_PREPARED)
-        playStatus.putExtra(EXTRA_PLAY_DURATION, duration)
-        sendBroadcast(playStatus)
-        if (!isPause) onPlay()
+        if (!isPause) {
+            var duration = mMediaPlayer.duration
+            var playStatus = Intent(ACTION_PLAY_STATUS)
+            playStatus.putExtra(EXTRA_PLAY_STATUS, EXTRA_STATUS_PREPARED)
+            playStatus.putExtra(EXTRA_PLAY_DURATION, duration)
+            sendBroadcast(playStatus)
+            onPlay()
+        }
     }
 
     //通知播放活动（Activity）-更新进度
