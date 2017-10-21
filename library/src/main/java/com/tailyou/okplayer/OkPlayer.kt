@@ -25,8 +25,8 @@ object OkPlayer {
     //注册播放（进度、状态）接收器
     fun registerPlayReceiver(context: Context, playReceiver: PlayReceiver) {
         var filter = IntentFilter()
-        filter.addAction(PlayService.ACTION_PRG_S_2_A)
-        filter.addAction(PlayService.ACTION_PLAY_STATUS)
+        filter.addAction(ACTION_S_2_A_PRG)
+        filter.addAction(ACTION_S_2_A_STATUS)
         context.registerReceiver(playReceiver, filter)
     }
 
@@ -37,29 +37,29 @@ object OkPlayer {
 
     //通知PlayService-新音频
     fun notifyNewMp3(context: Context, mp3Url: String) {
-        var newMp3 = Intent(PlayService.ACTION_NEW_MP3)
-        newMp3.putExtra(PlayService.EXTRA_NEW_MP3, mp3Url)
+        var newMp3 = Intent(ACTION_A_2_S_MP3)
+        newMp3.putExtra(EXTRA_MP3_PATH, mp3Url)
         context.sendBroadcast(newMp3)
     }
 
     //通知PlayService-播放
     fun notifyPlay(context: Context) {
-        var playCtrl = Intent(PlayService.ACTION_PLAY_CTRL)
-        playCtrl.putExtra(PlayService.EXTRA_PLAY_CTRL, PlayService.EXTRA_CTRL_PLAY)
+        var playCtrl = Intent(ACTION_A_2_S_CTRL)
+        playCtrl.putExtra(EXTRA_PLAY_CTRL, PLAY_CTRL_PLAY)
         context.sendBroadcast(playCtrl)
     }
 
     //通知PlayService-更新进度
     fun notifyProgress(context: Context, progress: Int) {
-        var intentPrg = Intent(PlayService.ACTION_PRG_A_2_S)
-        intentPrg.putExtra(PlayService.EXTRA_PLAY_PRG, progress)
+        var intentPrg = Intent(ACTION_A_2_S_PRG)
+        intentPrg.putExtra(EXTRA_PLAY_PRG, progress)
         context.sendBroadcast(intentPrg)
     }
 
     //通知PlayService-暂停
     fun notifyPause(context: Context) {
-        var playCtrl = Intent(PlayService.ACTION_PLAY_CTRL)
-        playCtrl.putExtra(PlayService.EXTRA_PLAY_CTRL, PlayService.EXTRA_CTRL_PAUSE)
+        var playCtrl = Intent(ACTION_A_2_S_CTRL)
+        playCtrl.putExtra(EXTRA_PLAY_CTRL, PLAY_CTRL_PAUSE)
         context.sendBroadcast(playCtrl)
     }
 

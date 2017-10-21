@@ -23,6 +23,18 @@ class MainActivity : AppCompatActivity() {
 
     var isPlaying = false
     var playReceiver = object : PlayReceiver() {
+        override fun onStateRinging() {
+
+        }
+
+        override fun onStateIdle() {
+
+        }
+
+        override fun onStateOffHook() {
+
+        }
+
         override fun onProgressUpdate(progress: Int) {
             seekBarPrg.progress = progress
             tvPlayTime.text = OkPlayer.getFormatPlayTime(progress)
