@@ -27,6 +27,7 @@ object OkPlayer {
         var filter = IntentFilter()
         filter.addAction(ACTION_S_2_A_PRG)
         filter.addAction(ACTION_S_2_A_STATUS)
+        filter.addAction(ACTION_INCOMMING_CALL)
         context.registerReceiver(playReceiver, filter)
     }
 

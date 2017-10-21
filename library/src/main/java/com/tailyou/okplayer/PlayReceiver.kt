@@ -47,7 +47,7 @@ abstract class PlayReceiver : BroadcastReceiver() {
                     onStateIdle()
                 }
                 TelephonyManager.CALL_STATE_OFFHOOK -> {
-                    onStateOffHook()
+                    //onStateOffHook()
                 }
             }
         }
@@ -56,8 +56,8 @@ abstract class PlayReceiver : BroadcastReceiver() {
     abstract fun onProgressUpdate(progress: Int)//同步后台播放进度
     abstract fun onPlayPrepared(duration: Int)//播放准备完成，同步状态及音频时长
     abstract fun onPlayCompleted()//播放完成，同步播放完成状态
-    abstract fun onStateRinging()//来电-响铃
-    abstract fun onStateIdle()//来电-挂断
-    abstract fun onStateOffHook()//来电-接听
+    open fun onStateRinging() {}//来电-响铃
+    open fun onStateIdle() {}//来电-挂断
+    //open fun onStateOffHook() {}//来电-接听
 
 }
