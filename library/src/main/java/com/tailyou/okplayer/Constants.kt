@@ -1,7 +1,5 @@
 package com.tailyou.okplayer
 
-import android.content.Intent
-
 //新音频
 const val ACTION_A_2_S_MP3 = "ACTION_A_2_S_MP3"
 const val EXTRA_MP3_PATH = "EXTRA_MP3_PATH"
