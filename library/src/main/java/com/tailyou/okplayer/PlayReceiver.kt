@@ -16,21 +16,21 @@ abstract class PlayReceiver : BroadcastReceiver() {
 
     override fun onReceive(context: Context, intent: Intent) {
         when (intent.action) {
-            ACTION_S_2_A_PRG -> {
-                val progress = intent.extras[EXTRA_PLAY_PRG] as Int
+            Constants.ACTION_S_2_A_PRG -> {
+                val progress = intent.extras[Constants.EXTRA_PLAY_PRG] as Int
                 onProgressUpdate(progress)
             }
-            ACTION_S_2_A_STATUS -> {
-                var audioStatus: Int = intent.extras[EXTRA_STATUS] as Int
+            Constants.ACTION_S_2_A_STATUS -> {
+                var audioStatus: Int = intent.extras[Constants.EXTRA_STATUS] as Int
                 when (audioStatus) {
-                    STATUS_PREPARED -> {
-                        var duration: Int = intent.extras[STATUS_DURATION] as Int
+                    Constants.STATUS_PREPARED -> {
+                        var duration: Int = intent.extras[Constants.STATUS_DURATION] as Int
                         onPlayPrepared(duration)
                     }
-                    STATUS_COMPLETED -> onPlayCompleted()
+                    Constants.STATUS_COMPLETED -> onPlayCompleted()
                 }
             }
-            ACTION_INCOMMING_CALL -> {
+            Constants.ACTION_INCOMMING_CALL -> {
                 var tm = context.getSystemService(Context.TELEPHONY_SERVICE) as TelephonyManager
                 tm.listen(phoneStateListener, PhoneStateListener.LISTEN_CALL_STATE)
             }
