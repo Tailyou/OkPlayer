@@ -22,7 +22,11 @@ object Constants {
     const val EXTRA_STATUS = "EXTRA_STATUS"
     const val STATUS_COMPLETED = 2001
     const val STATUS_PREPARED = 2002
-    const val STATUS_DURATION = "STATUS_DURATION"
+    const val EXTRA_DURATION = "EXTRA_DURATION"
+
+    //缓冲进度
+    const val ACTION_S_2_A_BUFFER_PRG = "ACTION_S_2_A_BUFFER_PRG"
+    const val EXTRA_BUFFER_PRG = "EXTRA_BUFFER_PRG"
 
     //update frequency
     const val WHAT_CHANGE_PLAY_PROGRESS = 1
