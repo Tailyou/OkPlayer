@@ -35,15 +35,15 @@ class PlayService : Service() {
     inner class PlayReceiver : BroadcastReceiver() {
         override fun onReceive(context: Context, intent: Intent) {
             when (intent.action) {
-                packageName + Constants.ACTION_A_2_S_MP3 -> {
+                prefixAction + Constants.ACTION_A_2_S_MP3 -> {
                     var mp3Path: String = intent.extras[Constants.EXTRA_MP3_PATH] as String
                     onNewMp3(mp3Path)
                 }
-                packageName + Constants.ACTION_A_2_S_PRG -> {
+                prefixAction + Constants.ACTION_A_2_S_PRG -> {
                     val currentPosition = intent.extras[Constants.EXTRA_PLAY_PRG] as Int
                     mMediaPlayer.seekTo(currentPosition)
                 }
-                packageName + Constants.ACTION_A_2_S_CTRL -> {
+                prefixAction + Constants.ACTION_A_2_S_CTRL -> {
                     var playCtrl: Int = intent.extras[Constants.EXTRA_PLAY_CTRL] as Int
                     when (playCtrl) {
                         Constants.PLAY_CTRL_PLAY -> onPlay()
