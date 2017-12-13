@@ -13,7 +13,7 @@ import java.lang.Exception
  */
 object OkPlayer {
 
-    lateinit var prefixAction: String
+     var prefixAction: String = ""
 
     //启动音频播放服务
     fun startPlayService(context: Context, prefixAction: String) {
