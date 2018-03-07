@@ -52,7 +52,7 @@ abstract class PlayReceiver : BroadcastReceiver() {
                     onStateIdle()
                 }
                 TelephonyManager.CALL_STATE_OFFHOOK -> {
-                    //onStateOffHook()
+                    onStateOffHook()
                 }
             }
         }
@@ -64,6 +64,6 @@ abstract class PlayReceiver : BroadcastReceiver() {
     open fun onBufferPrgUpdate(percent: Int) {}//缓冲进度更新
     open fun onStateRinging() {}//来电-响铃
     open fun onStateIdle() {}//来电-挂断
-    //open fun onStateOffHook() {}//来电-接听
+    open fun onStateOffHook() {}//来电-接听
 
 }
