@@ -77,42 +77,52 @@ class PlayService : Service() {
 
     //通知播放活动（Activity）-准备完毕
     private fun notifyPrepared() {
-        if (!isPause) {
-            var duration = mMediaPlayer.duration
-            var playStatus = Intent(prefixAction + Constants.ACTION_S_2_A_STATUS)
-            playStatus.putExtra(Constants.EXTRA_STATUS, Constants.STATUS_PREPARED)
-            playStatus.putExtra(Constants.EXTRA_DURATION, duration)
-            sendBroadcast(playStatus)
-            onPlay()
+        try {
+            if (!isPause) {
+                var duration = mMediaPlayer.duration
+                var playStatus = Intent(prefixAction + Constants.ACTION_S_2_A_STATUS)
+                playStatus.putExtra(Constants.EXTRA_STATUS, Constants.STATUS_PREPARED)
+                playStatus.putExtra(Constants.EXTRA_DURATION, duration)
+                sendBroadcast(playStatus)
+                onPlay()
+            }
+        } catch (e: Exception) {
+            e.printStackTrace()
         }
     }
 
     //通知播放活动（Activity）-缓冲进度
     private fun notifyBufferPrg(percent: Int) {
-        var bufferPrg = Intent(prefixAction + Constants.ACTION_S_2_A_BUFFER_PRG)
-        bufferPrg.putExtra(Constants.EXTRA_BUFFER_PRG, percent)
-        sendBroadcast(bufferPrg)
+        try {
+            var bufferPrg = Intent(prefixAction + Constants.ACTION_S_2_A_BUFFER_PRG)
+            bufferPrg.putExtra(Constants.EXTRA_BUFFER_PRG, percent)
+            sendBroadcast(bufferPrg)
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
     }
 
     //通知播放活动（Activity）-更新进度
     private fun notifyProgress() {
-        if (mMediaPlayer != null) {
-            try {
-                var currentTime = mMediaPlayer.currentPosition
-                var playPrg = Intent(prefixAction + Constants.ACTION_S_2_A_PRG)
-                playPrg.putExtra(Constants.EXTRA_PLAY_PRG, currentTime)
-                sendBroadcast(playPrg)
-            } catch (e: Exception) {
-                e.printStackTrace()
-            }
+        try {
+            var currentTime = mMediaPlayer.currentPosition
+            var playPrg = Intent(prefixAction + Constants.ACTION_S_2_A_PRG)
+            playPrg.putExtra(Constants.EXTRA_PLAY_PRG, currentTime)
+            sendBroadcast(playPrg)
+        } catch (e: Exception) {
+            e.printStackTrace()
         }
     }
 
     //通知播放活动（Activity）-播放完成
     private fun notifyCompleted() {
-        var playStatus = Intent(prefixAction + Constants.ACTION_S_2_A_STATUS)
-        playStatus.putExtra(Constants.EXTRA_STATUS, Constants.STATUS_COMPLETED)
-        sendBroadcast(playStatus)
+        try {
+            var playStatus = Intent(prefixAction + Constants.ACTION_S_2_A_STATUS)
+            playStatus.putExtra(Constants.EXTRA_STATUS, Constants.STATUS_COMPLETED)
+            sendBroadcast(playStatus)
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
     }
 
     override fun onBind(p0: Intent): IBinder? {
