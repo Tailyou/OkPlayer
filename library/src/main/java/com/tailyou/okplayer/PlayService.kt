@@ -96,10 +96,16 @@ class PlayService : Service() {
 
     //通知播放活动（Activity）-更新进度
     private fun notifyProgress() {
-        var currentTime = mMediaPlayer.currentPosition
-        var playPrg = Intent(prefixAction + Constants.ACTION_S_2_A_PRG)
-        playPrg.putExtra(Constants.EXTRA_PLAY_PRG, currentTime)
-        sendBroadcast(playPrg)
+        if (mMediaPlayer != null) {
+            try {
+                var currentTime = mMediaPlayer.currentPosition
+                var playPrg = Intent(prefixAction + Constants.ACTION_S_2_A_PRG)
+                playPrg.putExtra(Constants.EXTRA_PLAY_PRG, currentTime)
+                sendBroadcast(playPrg)
+            } catch (e: Exception) {
+                e.printStackTrace()
+            }
+        }
     }
 
     //通知播放活动（Activity）-播放完成
@@ -130,6 +136,7 @@ class PlayService : Service() {
         unregisterReceiver(mPlayReceiver)
         mMediaPlayer.stop()
         mMediaPlayer.release()
+        mPlayHandler.removeMessages(Constants.WHAT_CHANGE_PLAY_PROGRESS)
     }
 
 }
